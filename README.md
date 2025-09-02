@@ -1,7 +1,7 @@
 # 📊 Sales Trend Analysis Using SQL Aggregations
 
 ## 📝 Overview
-This project is the solution for **Elevate Labs Data Analyst Internship – Task 6**, which involves analyzing **monthly revenue** and **order volumes** from an `online_sales` dataset using SQL aggregations.
+This project is the solution for **Data Analyst Internship – Task 6**, which involves analyzing **monthly revenue** and **order volumes** from an `online_sales` dataset using SQL aggregations.
 
 We use a **SQLite** database for demonstration, but SQL queries are compatible with **PostgreSQL** and **MySQL**.
 
