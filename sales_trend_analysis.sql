@@ -12,23 +12,24 @@ GROUP BY year, month
 ORDER BY year, month;
 
 -- 2️⃣ Top 3 Months by Revenue
-SELECT 
-    CAST(strftime('%Y', order_date) AS INTEGER) AS year,
-    CAST(strftime('%m', order_date) AS INTEGER) AS month,
-    CASE month
-        WHEN 1 THEN 'January' WHEN 2 THEN 'February' WHEN 3 THEN 'March'
-        WHEN 4 THEN 'April' WHEN 5 THEN 'May' WHEN 6 THEN 'June'
-        WHEN 7 THEN 'July' WHEN 8 THEN 'August' WHEN 9 THEN 'September'
-        WHEN 10 THEN 'October' WHEN 11 THEN 'November' WHEN 12 THEN 'December'
-    END AS month_name,
-    ROUND(SUM(amount), 2) AS total_revenue,
-    COUNT(DISTINCT order_id) AS order_count
+SELECT
+CAST(strftime('%Y', order_date) AS INTEGER) AS year,
+CAST(strftime('%m', order_date) AS INTEGER) AS month,
+CASE CAST(strftime('%m', order_date) AS INTEGER)
+WHEN 1 THEN 'January' WHEN 2 THEN 'February' WHEN 3 THEN 'March'
+WHEN 4 THEN 'April' WHEN 5 THEN 'May' WHEN 6 THEN 'June'
+WHEN 7 THEN 'July' WHEN 8 THEN 'August' WHEN 9 THEN 'September'
+WHEN 10 THEN 'October' WHEN 11 THEN 'November' WHEN 12 THEN 'December'
+END AS month_name,
+ROUND(SUM(amount), 2) AS total_revenue,
+COUNT(DISTINCT order_id) AS order_count
 FROM online_sales
 WHERE amount IS NOT NULL
-GROUP BY year, month
+GROUP BY
+CAST(strftime('%Y', order_date) AS INTEGER),
+CAST(strftime('%m', order_date) AS INTEGER)
 ORDER BY total_revenue DESC
 LIMIT 3;
-
 -- 3️⃣ Product Category Performance
 SELECT
     product_category,
